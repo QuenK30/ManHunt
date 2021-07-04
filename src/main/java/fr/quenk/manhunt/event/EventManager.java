@@ -15,5 +15,6 @@ public class EventManager {
 
     public void registerEvents() {
         PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new MHPListener(main), main);
     }
 }
