@@ -1,0 +1,7 @@
+name: Manhunt
+version: ${project.version}
+main: fr.quenk.manhunt.MHMain
+api-version: 1.17
+authors: [QuenK]
+description: ManHunt by QuenK
+website: https://discord.com/invite/pSrvrU8pcN
