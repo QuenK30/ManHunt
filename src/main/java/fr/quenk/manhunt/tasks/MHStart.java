@@ -32,8 +32,8 @@ public class MHStart extends BukkitRunnable {
         location.setZ( location.getZ() + Math.random() * 10 * 2 - 10);
 
         Location location2 = new Location(world, 0, 0, 0);
-        location2.setX( location2.getX() + Math.random() * 400 * 2 - 10);
-        location2.setZ( location2.getZ() + Math.random() * 400 * 2 - 10);
+        location2.setX( location2.getX() + Math.random() * 240 * 2 - 10);
+        location2.setZ( location2.getZ() + Math.random() * 240 * 2 - 10);
 
         location.setY( world.getHighestBlockAt(location.getBlockX(), location.getBlockZ() ).getY()+1);
         location2.setY( world.getHighestBlockAt(location2.getBlockX(), location2.getBlockZ() ).getY()+1);
@@ -81,7 +81,7 @@ public class MHStart extends BukkitRunnable {
             WorldBorder worldBorder = world.getWorldBorder();
             worldBorder.setCenter(0,0);
             worldBorder.setSize(1000);
-            Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+" Border set (500x500)");
+            Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"Border set (500x500)");
 
             MHGameCycle mhGameCycle = new MHGameCycle(main);
             mhGameCycle.runTaskTimer(main, 0,20);

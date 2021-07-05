@@ -6,10 +6,14 @@ import fr.quenk.manhunt.utils.ChatUtils;
 import fr.quenk.manhunt.utils.MHState;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 
 /*
  *QuenK_ 04/07/2021 | 11:18 |ManHunt
@@ -46,6 +50,37 @@ public class MHPListener implements Listener {
             player.sendMessage(ChatUtils.PREFIX.getMessage()+" This game as already begin !");
             System.out.println("trop de joueur");
             event.setJoinMessage(null);
+        }
+    }
+    @EventHandler
+    public void onBreak(BlockBreakEvent event){
+        Player player = event.getPlayer();
+        Block block = event.getBlock();
+
+        //iron
+        ItemStack iron = new ItemStack(Material.IRON_INGOT);
+        iron.setAmount(2);
+        //diamond
+        ItemStack diamond = new ItemStack(Material.DIAMOND);
+
+        //gold
+        ItemStack gold = new ItemStack(Material.GOLD_INGOT);
+        gold.setAmount(4);
+
+        if(main.getPreyplayer().contains(player.getName())){
+            if(block.getType() == Material.IRON_ORE){
+                player.getInventory().addItem(iron);
+                event.getBlock().setType(Material.AIR);
+            }
+
+            if(block.getType() == Material.DIAMOND_ORE){
+                player.getInventory().addItem(diamond);
+                event.getBlock().setType(Material.AIR);
+            }
+            if(block.getType() == Material.GOLD_ORE){
+                player.getInventory().addItem(gold);
+                event.getBlock().setType(Material.AIR);
+            }
         }
     }
 
