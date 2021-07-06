@@ -4,7 +4,7 @@ import fr.quenk.manhunt.MHMain;
 import fr.quenk.manhunt.tasks.MHStart;
 import fr.quenk.manhunt.utils.ChatUtils;
 import fr.quenk.manhunt.utils.MHState;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
  *QuenK_ 04/07/2021 | 11:18 |ManHunt
  */
 public class MHPListener implements Listener {
-    private MHMain main;
+    private final MHMain main;
     public MHPListener(MHMain main) {
         this.main = main;
     }
@@ -35,6 +35,7 @@ public class MHPListener implements Listener {
         player.setFoodLevel(20);
         player.setGameMode(GameMode.ADVENTURE);
         player.setLevel(0);
+        player.getActivePotionEffects().clear();
         player.setAllowFlight(true);
 
 
@@ -51,7 +52,10 @@ public class MHPListener implements Listener {
             System.out.println("trop de joueur");
             event.setJoinMessage(null);
         }
+        player.setPlayerListHeader(ChatColor.GRAY+"Man"+ChatColor.GREEN+"Hunt");
+        player.setPlayerListFooter(ChatUtils.BGAUTHOR.getMessage());
     }
+
     @EventHandler
     public void onBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
@@ -60,9 +64,12 @@ public class MHPListener implements Listener {
         //iron
         ItemStack iron = new ItemStack(Material.IRON_INGOT);
         iron.setAmount(2);
-        //diamond
-        ItemStack diamond = new ItemStack(Material.DIAMOND);
-
+        //deepiron
+        ItemStack irondeep = new ItemStack(Material.DEEPSLATE_IRON_ORE);
+        irondeep.setAmount(2);
+        //deepiron
+        ItemStack golddeep = new ItemStack(Material.DEEPSLATE_GOLD_ORE);
+        golddeep.setAmount(4);
         //gold
         ItemStack gold = new ItemStack(Material.GOLD_INGOT);
         gold.setAmount(4);
@@ -73,15 +80,19 @@ public class MHPListener implements Listener {
                 event.getBlock().setType(Material.AIR);
             }
 
-            if(block.getType() == Material.DIAMOND_ORE){
-                player.getInventory().addItem(diamond);
+            if(block.getType() == Material.DEEPSLATE_IRON_ORE){
+                player.getInventory().addItem(irondeep);
                 event.getBlock().setType(Material.AIR);
             }
             if(block.getType() == Material.GOLD_ORE){
                 player.getInventory().addItem(gold);
                 event.getBlock().setType(Material.AIR);
             }
+            if(block.getType() == Material.DEEPSLATE_GOLD_ORE){
+                player.getInventory().addItem(golddeep);
+                event.getBlock().setType(Material.AIR);
+            }
+
         }
     }
-
 }

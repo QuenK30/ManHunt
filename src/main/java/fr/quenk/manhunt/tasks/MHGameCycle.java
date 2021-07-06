@@ -39,8 +39,8 @@ public class MHGameCycle extends BukkitRunnable {
             for(Player pls : Bukkit.getOnlinePlayers()){
                 if(main.getPreyplayer().contains(pls.getName())){
                     pls.sendMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"You are prey!");
-                    PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, 18000, 2);
-                    PotionEffect haste = new PotionEffect(PotionEffectType.FAST_DIGGING, 18000, 1);
+                    PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, 6000, 2);
+                    PotionEffect haste = new PotionEffect(PotionEffectType.FAST_DIGGING, 6000, 2);
                     pls.addPotionEffect(speed);
                     pls.addPotionEffect(haste);
 

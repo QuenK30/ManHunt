@@ -85,6 +85,7 @@ public class MHStart extends BukkitRunnable {
 
             MHGameCycle mhGameCycle = new MHGameCycle(main);
             mhGameCycle.runTaskTimer(main, 0,20);
+            main.setState(MHState.GAME);
             cancel();
         }
         timer --;

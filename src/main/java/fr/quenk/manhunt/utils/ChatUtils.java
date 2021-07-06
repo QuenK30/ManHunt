@@ -8,7 +8,7 @@ import org.bukkit.ChatColor;
 public enum ChatUtils {
     PREFIX(ChatColor.WHITE+"﴾"+ ChatColor.GRAY+" Man"+ChatColor.DARK_GREEN+"Hunt "+ ChatColor.WHITE+"﴿ "),
     AUTHOR("QuenK"),
-    BGAUTHOR(ChatColor.WHITE+"﴾"+ ChatColor.GRAY+" QuenK "+ChatColor.WHITE+"﴿ "),
+    BGAUTHOR(ChatColor.WHITE+"﴾"+ ChatColor.GRAY+" By QuenK "+ChatColor.WHITE+"﴿ "),
     PLUS(ChatColor.GRAY+" ["+ChatColor.GREEN+"+"+ChatColor.GRAY+"] "),
     MOIN(ChatColor.GRAY+" ["+ChatColor.GREEN+"-"+ChatColor.GRAY+"] "),
     RECONNECTED(ChatColor.GRAY+" ["+ChatColor.GREEN+"RECONNECTED"+ChatColor.GRAY+"] ");
