@@ -75,12 +75,30 @@ public class MHGameCycle extends BukkitRunnable {
         if(timer == 600){
             Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"Final fight in"+ ChatColor.RED+" 10"+ChatColor.GRAY+" minutes.");
             worldBorder.setSize(600);
+            for(Player pls : Bukkit.getOnlinePlayers()){
+                if(isOutsideBorder(pls)){
+                    Location locr300 = new Location(world, 0, 0, 0);
+                    locr300.setX( locr300.getX() + Math.random() * 150 * 2 - 10);
+                    locr300.setZ( locr300.getZ() + Math.random() * 150 * 2 - 10);
+                    locr300.setY( world.getHighestBlockAt(locr300.getBlockX(), locr300.getBlockZ() ).getY()+3);
+                    pls.teleport(locr300);
+                }
+            }
             Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"Border set (300x300)");
         }
         if(timer == 300){
             Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"Final fight in"+ ChatColor.RED+" 5"+ChatColor.GRAY+" minutes.");
             worldBorder.setSize(200);
             Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"Border set (100x100)");
+            for(Player pls : Bukkit.getOnlinePlayers()){
+                if(isOutsideBorder(pls)){
+                    Location locr200 = new Location(world, 0, 0, 0);
+                    locr200.setX( locr200.getX() + Math.random() * 100 * 2 - 10);
+                    locr200.setZ( locr200.getZ() + Math.random() * 100 * 2 - 10);
+                    locr200.setY( world.getHighestBlockAt(locr200.getBlockX(), locr200.getBlockZ() ).getY()+3);
+                    pls.teleport(locr200);
+                }
+            }
         }
         if(timer == 60 || timer == 30 || timer == 20 ||timer == 15){
             Bukkit.broadcastMessage(ChatUtils.PREFIX.getMessage()+ChatColor.GRAY+"Final fight in"+ ChatColor.RED+timer+ChatColor.GRAY+" seconds.");
@@ -103,5 +121,12 @@ public class MHGameCycle extends BukkitRunnable {
             cancel();
         }
         timer--;
+    }
+    public boolean isOutsideBorder(Player player){
+        WorldBorder border = player.getWorld().getWorldBorder();
+        double radius = border.getSize() / 2;
+        Location location = player.getLocation(), center = border.getCenter();
+
+        return center.distanceSquared(location) >= (radius * radius);
     }
 }
