@@ -75,6 +75,7 @@ public class MHStart extends BukkitRunnable {
                 pls.setFoodLevel(20);
                 pls.setHealth(20);
                 pls.setAllowFlight(false);
+                pls.getActivePotionEffects().clear();
                 pls.setLevel(0);
                 pls.setExp(0);
             }
