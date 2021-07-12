@@ -4,6 +4,7 @@ import fr.quenk.manhunt.MHMain;
 import fr.quenk.manhunt.tasks.MHStart;
 import fr.quenk.manhunt.utils.ChatUtils;
 import fr.quenk.manhunt.utils.MHState;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -47,10 +48,16 @@ public class MHPListener implements Listener {
         }
 
         if(!main.isState(MHState.WAITING)){
-            player.setGameMode(GameMode.SPECTATOR);
-            player.sendMessage(ChatUtils.PREFIX.getMessage()+" This game as already begin !");
-            System.out.println("trop de joueur");
-            event.setJoinMessage(null);
+            if(main.getHuntplayer().contains(player) || main.getPreyplayer().contains(player)){
+                Bukkit.broadcastMessage(ChatUtils.RECONNECTED.getMessage()+ player.getName());
+                return;
+            }else{
+                player.setGameMode(GameMode.SPECTATOR);
+                player.sendMessage(ChatUtils.PREFIX.getMessage()+" This game as already begin !");
+                System.out.println("trop de joueur");
+                event.setJoinMessage(null);
+            }
+
         }
         player.setPlayerListHeader(ChatColor.GRAY+"Man"+ChatColor.GREEN+"Hunt");
         player.setPlayerListFooter(ChatUtils.BGAUTHOR.getMessage());
