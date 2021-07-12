@@ -68,6 +68,7 @@ public class MHGameCycle extends BukkitRunnable {
                     pls.getInventory().addItem(chestplate);
                     pls.getInventory().addItem(leggings);
                     pls.getInventory().addItem(boots);
+                    pls.getActivePotionEffects().clear();
                     pls.setPlayerListName(ChatColor.GRAY+"["+ChatColor.RED+"Hunter"+ChatColor.GRAY+"]"+" "+pls.getName());
                 }
             }
