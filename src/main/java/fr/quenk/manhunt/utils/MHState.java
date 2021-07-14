@@ -6,6 +6,5 @@ package fr.quenk.manhunt.utils;
 public enum MHState {
     WAITING,
     STARTING,
-    GAME,
-    FINISH
+    GAME
 }

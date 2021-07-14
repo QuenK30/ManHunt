@@ -5,6 +5,7 @@ import fr.quenk.manhunt.utils.ChatUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -97,6 +98,12 @@ public class MHGameCycle extends BukkitRunnable {
                     locr200.setZ( locr200.getZ() + Math.random() * 100 * 2 - 10);
                     locr200.setY( world.getHighestBlockAt(locr200.getBlockX(), locr200.getBlockZ() ).getY()+3);
                     pls.teleport(locr200);
+                }
+                if(main.getHuntplayer().contains(pls.getName())){
+                    ItemStack compass = new ItemStack(Material.COMPASS);
+                    ItemMeta compasss = compass.getItemMeta();
+                    compasss.setDisplayName(ChatColor.BOLD+"§2Tracker");
+                    pls.getInventory().addItem(compass);
                 }
             }
         }

@@ -28,17 +28,19 @@ public class MHPListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        event.setJoinMessage(ChatUtils.PREFIX.getMessage()+player.getName()+ChatUtils.PLUS.getMessage());
-        main.getSpecplayer().add(player.getName());
+        if(main.isState(MHState.WAITING)) {
+            event.setJoinMessage(ChatUtils.PREFIX.getMessage() + player.getName() + ChatUtils.PLUS.getMessage());
+            main.getSpecplayer().add(player.getName());
 
-        player.getInventory().clear();
-        player.setHealth(20);
-        player.setFoodLevel(20);
-        player.setGameMode(GameMode.ADVENTURE);
-        player.setLevel(0);
-        player.getActivePotionEffects().clear();
-        player.setAllowFlight(true);
+            player.getInventory().clear();
+            player.setHealth(20);
+            player.setFoodLevel(20);
+            player.setGameMode(GameMode.ADVENTURE);
+            player.setLevel(0);
+            player.getActivePotionEffects().clear();
+            player.setAllowFlight(true);
 
+        }
 
         if(main.isState(MHState.WAITING) && main.getSpecplayer().size() == 2){
             MHStart mhStart = new MHStart(main);
@@ -48,9 +50,8 @@ public class MHPListener implements Listener {
         }
 
         if(!main.isState(MHState.WAITING)){
-            if(main.getHuntplayer().contains(player) || main.getPreyplayer().contains(player)){
+            if(main.getHuntplayer().contains(player.getName()) || main.getPreyplayer().contains(player.getName())){
                 Bukkit.broadcastMessage(ChatUtils.RECONNECTED.getMessage()+ player.getName());
-                return;
             }else{
                 player.setGameMode(GameMode.SPECTATOR);
                 player.sendMessage(ChatUtils.PREFIX.getMessage()+" This game as already begin !");
